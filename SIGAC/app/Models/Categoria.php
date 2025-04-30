@@ -8,4 +8,16 @@ class Categoria extends Model
 {
     protected $table = 'categorias';
     protected $fillable = ['nome','maximo_horas', 'curso_id'];
+
+    public function curso(){
+        return $this->belongsTo(Curso::class);
+    }
+
+    public function documentos(){
+        return $this->hasMany(Documento::class);
+    }
+
+    public function comprovantes(){
+        return $this->hasMany(Comprovante::class);
+    }
 }
