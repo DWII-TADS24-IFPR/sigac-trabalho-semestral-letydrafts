@@ -3,62 +3,82 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categoria;
+use App\Models\Curso;
+
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $categorias = Categoria::with(['curso'])->get();
+        return view('categorias.index', compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
-        //
+        $cursos = Curso::all();
+        return view('categorias.create', compact('cursos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nome'=>'required|string|min:3',
+            'maximo_horas'=>'required|numeric',
+            'curso_id'=>'required|exists:cursos,id']);
+
+            Categoria::create($request->all());
+
+            return redirect()->route('categorias.index')->with('sucess', 'Categoria criada com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
-        //
+        $categoria = Categoria::with(['curso'])->find($id);
+        return view('categorias.index', compact('categoria'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
-        //
+        $categorias = Categoria::find($id);
+        $cursos = Curso::all();
+
+        return view('categorias.edit', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+
+        $validated = $request->validate([
+            'nome'=>'required|string|min:3',
+            'maximo_horas'=>'required|numeric',
+            'curso_id'=>'required|exists:cursos,id']);
+
+            $categoria->update($validated);
+
+            return redirect()->route('categorias.index')
+                        ->with('sucess', 'Categoria atualizada com sucesso');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+
+        if(isset($categoria)){
+            $categoria->delete();
+
+            return redirect()->route('categorias.index')
+                        ->with('sucess', 'Categoria excluida do sistema');
+        }
+
+        return '<h1>Não foi possível excluir esse registro do sistema</h1>';
     }
 }

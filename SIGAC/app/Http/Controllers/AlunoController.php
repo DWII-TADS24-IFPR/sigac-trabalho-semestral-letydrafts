@@ -3,84 +3,88 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Aluno;
+use App\Models\Curso;
+use App\Models\Turma;
 
 class AlunoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
-        $alunos = Aluno::all();
-        return view('alunos.index')->with('alunos', $alunos);
+        $alunos = Aluno::with(['curso', 'turma'])->get();
+        return view('alunos.index', compact('alunos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        return view('alunos.create');
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+        return view('alunos.create', compact('cursos', 'turmas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
 
-        $request->validate([
+        $validaded = $request->validate([
             'nome'=>'required|string|min:3',
             'cpf'=>'required|numeric|digits:11|unique:alunos,cpf',
             'email'=>'required|email|unique:alunos,email',
-            'senha'=>'required|string|min:8']);
+            'senha'=>'required|string|min:8',
+            'curso_id'=>'required|exists:cursos,id',
+            'turma_id'=>'required|exists:turmas,id']);
 
             Aluno::create($request->all());
+
             return redirect()->route('alunos.index')
                             ->with('sucess', 'Aluno criado no sistema.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $aluno = Aluno::with(['curso', 'turma'])->find($id);
+        return view('alunos.show', compact('aluno'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id)
     {
-        //
+        $aluno = Aluno::find($id);
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+        return view('alunos.edit', compact('aluno'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         $aluno = Aluno::find($id);
 
-        if(isset($aluno)){
-            $aluno->nome = $required->nome;
-            $aluno->cpf = $required->cpf;
-            $aluno->email = $required->email;
-            $aluno->senha = $required->senha;
-        }
+        $validated = $request->validate([
+            'nome' => 'required|string|min:3',
+            'cpf' => 'required|numeric|digits:11|unique:alunos,cpf,'.$aluno->id,
+            'email' => 'required|email|unique:alunos,email,'.$aluno->id,
+            'curso_id' => 'required|exists:cursos,id',
+            'turma_id' => 'required|exists:turmas,id'
+        ]);
+
+        $aluno->update($validated);
+
+        return redirect()->route('alunos.index')
+                        ->with('success', 'Aluno atualizado com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
-        $aluno = Alunos::find($id);
+        $aluno = Aluno::find($id);
 
         if(isset($aluno)){
             $aluno->delete();
-            return '<h1>Aluno excluido do sistema.</h1>';
+
+            return redirect()->route('alunos.index')
+                    ->with('sucess', 'Aluno excluido do sistema');
         }
 
         return '<h1>Não foi possível excluir esse registro do sistema</h1>';
