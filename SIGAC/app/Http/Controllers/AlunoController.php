@@ -27,7 +27,7 @@ class AlunoController extends Controller
     public function store(Request $request)
     {
 
-        $validaded = $request->validate([
+        $validated = $request->validate([
             'nome'=>'required|string|min:3',
             'cpf'=>'required|numeric|digits:11|unique:alunos,cpf',
             'email'=>'required|email|unique:alunos,email',
