@@ -29,10 +29,10 @@ class DeclaracaoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-        'hash'=>'request|string',
-        'data'=>'request|string',
-        'aluno_id'=>'request|exists:alunos,id',
-        'comprovante_id'=>'request|exists:comprovantes,id']);
+        'hash'=>'required|string',
+        'data'=>'required|string',
+        'aluno_id'=>'required|exists:alunos,id',
+        'comprovante_id'=>'required|exists:comprovantes,id']);
 
         Declaracao::create($request->all());
 
@@ -64,10 +64,10 @@ class DeclaracaoController extends Controller
         $declaracao = Declaracao::find($id);
 
         $validated = $request->validate([
-        'hash'=>'request|string',
-        'data'=>'request|string',
-        'aluno_id'=>'request|exists:alunos,id',
-        'comprovante_id'=>'request|exists:comprovantes,id']);
+        'hash'=>'required|string',
+        'data'=>'required|string',
+        'aluno_id'=>'required|exists:alunos,id',
+        'comprovante_id'=>'required|exists:comprovantes,id']);
 
         $declaracao->update($validated);
 
