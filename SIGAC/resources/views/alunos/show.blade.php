@@ -1,3 +1,6 @@
-<div>
-    <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection

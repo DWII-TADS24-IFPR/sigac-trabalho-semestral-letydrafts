@@ -71,7 +71,7 @@ class TurmaController extends Controller
     
     public function destroy(string $id)
     {
-        %turma = Turma::find($id);
+        $turma = Turma::find($id);
 
         if(isset($turma)){
             $turma->delete();

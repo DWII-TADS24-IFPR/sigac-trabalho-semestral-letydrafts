@@ -1,3 +1,6 @@
-<div>
-    <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection

@@ -1,3 +1,6 @@
-<div>
-    <!-- Very little is needed to make a happy life. - Marcus Aurelius -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection

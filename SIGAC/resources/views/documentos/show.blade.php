@@ -1,3 +1,6 @@
-<div>
-    <!-- Order your soul. Reduce your wants. - Augustine -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection

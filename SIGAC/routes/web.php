@@ -23,4 +23,4 @@ Route::resource('cursos', CursoController::class);
 Route::resource('declaracoes', DeclaracaoController::class);
 Route::resource('documentos', DocumentoController::class);
 Route::resource('turmas', TurmaController::class);
-Route::resource('nivels', NivelController::class);
+Route::resource('niveis', NivelController::class);

@@ -1,3 +1,6 @@
-<div>
-    <!-- Smile, breathe, and go slowly. - Thich Nhat Hanh -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection

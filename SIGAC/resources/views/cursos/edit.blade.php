@@ -1,3 +1,6 @@
-<div>
-    <!-- The only way to do great work is to love what you do. - Steve Jobs -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection

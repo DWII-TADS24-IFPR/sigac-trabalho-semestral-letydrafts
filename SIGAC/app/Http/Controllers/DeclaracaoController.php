@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Declaracao;
 use App\Models\Aluno;
 use App\Models\Comprovante;
@@ -12,8 +13,8 @@ class DeclaracaoController extends Controller
     
     public function index()
     {
-        $declarações = Declaracao::with(['aluno', 'comprovante'])->get();
-        return view('declaracoes.index', compact('declaracoes');
+        $declaracoes = Declaracao::with(['aluno', 'comprovante'])->get();
+        return view('declaracoes.index', compact('declaracoes'));
     }
 
 
@@ -39,7 +40,6 @@ class DeclaracaoController extends Controller
         return redirect()->route('declaracoes.index')
                         ->with('sucess', 'Declaração criada');
                                         
-        ])
     }
 
    
@@ -73,7 +73,6 @@ class DeclaracaoController extends Controller
 
         return redirect()->route('declaracoes.index')
                         ->with('sucess', 'Declaração atualizada');
-        ]);
     }
 
     

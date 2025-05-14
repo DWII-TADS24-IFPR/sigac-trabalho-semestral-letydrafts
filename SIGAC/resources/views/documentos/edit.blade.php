@@ -1,3 +1,6 @@
-<div>
-    <!-- An unexamined life is not worth living. - Socrates -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'SIGAC - Home')
+
+@section('content')
+@endsection
