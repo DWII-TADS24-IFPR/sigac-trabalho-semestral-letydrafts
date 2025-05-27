@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/zuhEA6gC)
 # 📌 Entrega do Projeto – SIGAC
 
@@ -49,3 +50,6 @@ A nota será atribuída com base nos seguintes critérios:
 
 Após o prazo final, o aluno ainda poderá apresentar o projeto com **caráter de recuperação**, por até **7 dias corridos**, ou seja, até a **próxima aula regular**.
 ➡️ Neste período, o **conceito máximo possível** será **C**.
+=======
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/hA5rNZQT)
+>>>>>>> temp-origem/main
