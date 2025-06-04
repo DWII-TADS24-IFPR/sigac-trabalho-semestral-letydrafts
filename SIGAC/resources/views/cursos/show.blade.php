@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'SIGAC - Curso')
+@section('title', 'Detalhes do Curso')
 
 @section('content')
 <div class="main-content">
@@ -10,13 +10,28 @@
                 <h5 class="mb-0">Detalhes do Curso</h5>
             </div>
             <div class="card-body p-4">
-                <p><strong>Nome:</strong> {{ $curso->nome }}</p>
-                <p><strong>Sigla:</strong> {{ $curso->sigla }}</p>
-                <p><strong>Total de Horas:</strong> {{ $curso->total_horas }}</p>
-                <p><strong>Nível:</strong> {{ $curso->nivel->nome ?? 'N/A' }}</p>
+                <h5 class="card-title">{{ $curso->nome }}</h5>
+                <p class="card-text"><strong>Sigla:</strong> {{ $curso->sigla }}</p>
+                <p class="card-text"><strong>Total de Horas:</strong> {{ $curso->total_horas }}</p>
+                <p class="card-text"><strong>Nível:</strong> {{ $curso->nivel->nome ?? 'N/A' }}</p>
 
-                <a href="{{ route('cursos.edit', $curso) }}" class="btn btn-outline-secondary">Editar</a>
-                <a href="{{ route('cursos.index') }}" class="btn btn-outline-primary">Voltar</a>
+                <div class="mt-3">
+                    <a href="{{ route('cursos.edit', $curso) }}" class="btn btn-purple-light">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+
+                    <form action="{{ route('cursos.destroy', $curso) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este curso?')">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                    </form>
+
+                    <a href="{{ route('cursos.index') }}" class="btn btn-outline-purple-light">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@
             <p class="card-text"><strong>CPF:</strong> {{ $aluno->cpf }}</p>
             <p class="card-text"><strong>Email:</strong> {{ $aluno->email }}</p>
             <p class="card-text"><strong>Curso:</strong> {{ $aluno->curso->nome }}</p>
-            <p class="card-text"><strong>Turma:</strong> {{ $aluno->turma->nome }}</p>
+            <p class="card-text"><strong>Turma:</strong> {{ $aluno->turma->ano }}</p>
         </div>
     </div>
 

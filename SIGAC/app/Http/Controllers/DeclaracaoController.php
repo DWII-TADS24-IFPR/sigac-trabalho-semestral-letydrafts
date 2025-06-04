@@ -46,7 +46,7 @@ class DeclaracaoController extends Controller
     public function show(string $id)
     {
         $declaracao = Declaracao::with(['aluno', 'comprovante'])->find($id);
-        return view('declaracao.show', compact('declaracao'));
+        return view('declaracoes.show', compact('declaracao'));
     }
 
     
@@ -55,7 +55,7 @@ class DeclaracaoController extends Controller
         $declaracao = Declaracao::find($id);
         $alunos = Aluno::all();
         $comprovantes = Comprovante::all();
-        return view('declaracoes.edit', compact('declaracao'));
+        return view('declaracoes.edit', compact('declaracao', 'alunos', 'comprovantes'));
     }
 
    

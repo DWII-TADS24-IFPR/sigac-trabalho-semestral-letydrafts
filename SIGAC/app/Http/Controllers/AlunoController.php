@@ -44,7 +44,10 @@ class AlunoController extends Controller
     public function show(string $id)
     {
         $aluno = Aluno::with(['curso', 'turma'])->find($id);
-        return view('alunos.show', compact('aluno'));
+         $cursos = Curso::all();
+        $turmas = Turma::all();
+       return view('alunos.show', compact('aluno', 'cursos', 'turmas'));
+
     }
 
    
@@ -53,7 +56,7 @@ class AlunoController extends Controller
         $aluno = Aluno::find($id);
         $cursos = Curso::all();
         $turmas = Turma::all();
-        return view('alunos.edit', compact('aluno'));
+        return view('alunos.edit', compact('aluno', 'cursos', 'turmas'));
     }
 
     

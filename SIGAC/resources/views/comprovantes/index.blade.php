@@ -22,8 +22,8 @@
                     <thead>
                         <tr>
                             <th>Aluno</th>
-                            <th>Documento</th>
-                            <th>Status</th>
+                            <th>Atividade</th>
+                            <th>Categoria</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -31,8 +31,8 @@
                         @foreach($comprovantes as $comprovante)
                             <tr>
                                 <td>{{ $comprovante->aluno->nome ?? 'N/A' }}</td>
-                                <td>{{ $comprovante->documento->descricao ?? 'N/A' }}</td>
-                                <td>{{ ucfirst($comprovante->status) }}</td>
+                                <td>{{ $comprovante->atividade ?? 'N/A' }}</td>
+                                <td>{{ $comprovante->categoria->nome ?? 'N/A' }}</td>
                                 <td>
                                     <a href="{{ route('comprovantes.show', $comprovante) }}" class="btn btn-sm btn-outline-primary">Ver</a>
                                     <a href="{{ route('comprovantes.edit', $comprovante) }}" class="btn btn-sm btn-outline-secondary">Editar</a>

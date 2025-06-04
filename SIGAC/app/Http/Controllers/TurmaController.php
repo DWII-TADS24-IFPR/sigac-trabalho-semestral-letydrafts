@@ -49,7 +49,7 @@ class TurmaController extends Controller
     {
         $turma = Turma::find($id);
         $cursos = Curso::all();
-        return view('turmas.edit', compact('turma'));
+        return view('turmas.edit', compact('turma', 'cursos'));
     }
 
    

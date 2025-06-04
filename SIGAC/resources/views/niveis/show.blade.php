@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'SIGAC - Nível')
+@section('title', 'Detalhes do Nível')
 
 @section('content')
 <div class="main-content">
@@ -10,10 +10,25 @@
                 <h5 class="mb-0">Detalhes do Nível</h5>
             </div>
             <div class="card-body p-4">
-                <p><strong>Nome:</strong> {{ $nivel->nome }}</p>
+                <h5 class="card-title">{{ $nivel->nome }}</h5>
 
-                <a href="{{ route('niveis.edit', $nivel) }}" class="btn btn-outline-secondary">Editar</a>
-                <a href="{{ route('niveis.index') }}" class="btn btn-outline-primary">Voltar</a>
+                <div class="mt-3">
+                    <a href="{{ route('niveis.edit', $nivel) }}" class="btn btn-purple-light">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+
+                    <form action="{{ route('niveis.destroy', $nivel) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este nível?')">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                    </form>
+
+                    <a href="{{ route('niveis.index') }}" class="btn btn-outline-purple-light">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
             </div>
         </div>
     </div>

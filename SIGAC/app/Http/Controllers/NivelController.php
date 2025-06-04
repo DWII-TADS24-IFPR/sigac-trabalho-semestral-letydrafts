@@ -44,7 +44,7 @@ class NivelController extends Controller
     public function edit(string $id)
     {
         $nivel = Nivel::find($id);
-        return view('niveis.edit', compact('niveis'));
+        return view('niveis.edit', compact('niveil'));
     }
 
    

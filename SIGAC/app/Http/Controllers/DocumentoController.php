@@ -45,7 +45,7 @@ class DocumentoController extends Controller
    
     public function show(string $id)
     {
-        $documento = Documento::with(['categoia'])->find($id);
+        $documento = Documento::with(['categoria'])->find($id);
         return view('documentos.show', compact('documento'));
     }
 
@@ -54,7 +54,7 @@ class DocumentoController extends Controller
     {
         $documento = Documento::find($id);
         $categorias = Categoria::all();
-        return view('categorias.edit', compact('categoria'));
+        return view('documentos.edit', compact('documento', 'categorias'));
     }
 
    

@@ -36,7 +36,7 @@
                                 <td>{{ $aluno->cpf }}</td>
                                 <td>{{ $aluno->email }}</td>
                                 <td>{{ $aluno->curso->nome ?? 'N/A' }}</td>
-                                <td>{{ $aluno->turma->nome ?? 'N/A' }}</td>
+                                <td>{{ $aluno->turma->ano ?? 'N/A' }}</td>
                                 <td>
                                     <a href="{{ route('alunos.show', $aluno) }}" class="btn btn-sm btn-outline-primary">Ver</a>
                                     <a href="{{ route('alunos.edit', $aluno) }}" class="btn btn-sm btn-outline-secondary">Editar</a>

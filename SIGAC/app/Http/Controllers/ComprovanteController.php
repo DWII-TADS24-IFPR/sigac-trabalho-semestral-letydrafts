@@ -55,7 +55,7 @@ class ComprovanteController extends Controller
         $categorias = Categoria::all();
         $alunos = Aluno::all();
 
-        return view('comprovantes.edit', compact('comprovante'));
+        return view('comprovantes.edit', compact('comprovante','categorias','alunos'));
 
     }
 

@@ -40,16 +40,16 @@ class CategoriaController extends Controller
     public function show(string $id)
     {
         $categoria = Categoria::with(['curso'])->find($id);
-        return view('categorias.index', compact('categoria'));
+        return view('categorias.show', compact('categoria'));
     }
 
     
     public function edit(string $id)
     {
-        $categorias = Categoria::find($id);
+        $categoria = Categoria::find($id);
         $cursos = Curso::all();
 
-        return view('categorias.edit', compact('categoria'));
+        return view('categorias.edit', compact('categoria', 'cursos'));
     }
 
     public function update(Request $request, string $id)

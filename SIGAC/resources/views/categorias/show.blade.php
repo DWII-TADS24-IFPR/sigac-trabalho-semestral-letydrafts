@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'SIGAC - Categoria')
+@section('title', 'Detalhes da Categoria')
 
 @section('content')
 <div class="main-content">
@@ -10,12 +10,27 @@
                 <h5 class="mb-0">Detalhes da Categoria</h5>
             </div>
             <div class="card-body p-4">
-                <p><strong>Nome:</strong> {{ $categoria->nome }}</p>
-                <p><strong>Máximo de Horas:</strong> {{ $categoria->maximo_horas }}</p>
-                <p><strong>Curso:</strong> {{ $categoria->curso->nome ?? 'N/A' }}</p>
+                <h5 class="card-title">{{ $categoria->nome }}</h5>
+                <p class="card-text"><strong>Máximo de Horas:</strong> {{ $categoria->maximo_horas }}</p>
+                <p class="card-text"><strong>Curso:</strong> {{ $categoria->curso->nome ?? 'N/A' }}</p>
 
-                <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-outline-secondary">Editar</a>
-                <a href="{{ route('categorias.index') }}" class="btn btn-outline-primary">Voltar</a>
+                <div class="mt-3">
+                    <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-purple-light">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+
+                    <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                    </form>
+
+                    <a href="{{ route('categorias.index') }}" class="btn btn-outline-purple-light">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
             </div>
         </div>
     </div>

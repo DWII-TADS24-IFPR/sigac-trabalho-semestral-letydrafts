@@ -43,7 +43,7 @@ class CursoController extends Controller
     public function show(string $id)
     {
         $curso = Curso::with(['nivel'])->find($id);
-        return view('cursos.show', compact('cursos'));
+        return view('cursos.show', compact('curso'));
     }
 
     
@@ -51,7 +51,7 @@ class CursoController extends Controller
     {
         $curso = Curso::find($id);
         $niveis = Nivel::all();
-        return view('cursos.edit', compact('curso'));
+        return view('cursos.edit', compact('curso', 'niveis'));
     }
 
     
