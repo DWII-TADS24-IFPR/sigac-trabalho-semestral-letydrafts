@@ -35,6 +35,7 @@
                                 <td>{{ $comprovante->categoria->nome ?? 'N/A' }}</td>
                                 <td>
                                     <a href="{{ route('comprovantes.show', $comprovante) }}" class="btn btn-sm btn-outline-primary">Ver</a>
+                                    <a href="{{ route('comprovantes.pdf', $comprovante->id) }}" class="btn btn-sm btn-outline-success">PDF</a>
                                     <a href="{{ route('comprovantes.edit', $comprovante) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
                                     <form action="{{ route('comprovantes.destroy', $comprovante) }}" method="POST" class="d-inline">
                                         @csrf

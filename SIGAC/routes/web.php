@@ -24,3 +24,4 @@ Route::resource('declaracoes', DeclaracaoController::class);
 Route::resource('documentos', DocumentoController::class);
 Route::resource('turmas', TurmaController::class);
 Route::resource('niveis', NivelController::class);
+Route::get('/comprovantes/{id}/pdf', [ComprovanteController::class, 'gerarPdf'])->name('comprovantes.pdf');

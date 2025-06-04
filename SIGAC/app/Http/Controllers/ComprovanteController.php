@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Comprovante;
 use App\Models\Categoria;
 use App\Models\Aluno;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ComprovanteController extends Controller
 {
@@ -92,4 +94,23 @@ class ComprovanteController extends Controller
 
         return '<h1>Não foi possível excluir esse comprovante do sistema</h1>';
     }
+
+
+public function gerarPdf($id)
+{
+    $comprovante = Comprovante::with(['aluno', 'categoria'])->findOrFail($id);
+
+    $html = view('comprovantes.pdf', compact('comprovante'))->render();
+
+    $options = new Options();
+    $options->set('defaultFont', 'DejaVu Sans');
+    $dompdf = new Dompdf($options);
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    return $dompdf->stream("comprovante_{$comprovante->id}.pdf", ['Attachment' => true]);
+}
+
 }
